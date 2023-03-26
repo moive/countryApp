@@ -21,10 +21,6 @@ const routes: Routes = [
     component: ByCapitalComponent,
   },
   {
-    path: 'capital',
-    component: ByCapitalComponent,
-  },
-  {
     path: 'country/:id',
     component: ShowCountryComponent,
   },
