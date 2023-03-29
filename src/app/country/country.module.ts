@@ -8,6 +8,7 @@ import { ByRegionComponent } from './pages/by-region/by-region.component';
 import { ShowCountryComponent } from './pages/show-country/show-country.component';
 import { RouterModule } from '@angular/router';
 import { CountryTableComponent } from './components/country-table/country-table.component';
+import { CountryInputComponent } from './components/country-input/country-input.component';
 
 const components = [
   ByCapitalComponent,
@@ -17,7 +18,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [components, CountryTableComponent],
+  declarations: [components, CountryTableComponent, CountryInputComponent],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [components],
 })
