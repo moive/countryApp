@@ -6,6 +6,7 @@ import { ByCapitalComponent } from './pages/by-capital/by-capital.component';
 import { ByCountryComponent } from './pages/by-country/by-country.component';
 import { ByRegionComponent } from './pages/by-region/by-region.component';
 import { ShowCountryComponent } from './pages/show-country/show-country.component';
+import { RouterModule } from '@angular/router';
 
 const components = [
   ByCapitalComponent,
@@ -16,7 +17,7 @@ const components = [
 
 @NgModule({
   declarations: [components],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   exports: [components],
 })
 export class CountryModule {}
