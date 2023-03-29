@@ -14,10 +14,9 @@ export class ByCountryComponent {
 
   constructor(private countryService: CountryService) {}
 
-  onSubmit(): void {
+  onSubmit(search: string): void {
     this.thereIsError = false;
-
-    this.countryService.searchCountry(this.search).subscribe({
+    this.countryService.searchCountry(search).subscribe({
       next: (data) => {
         console.log(data);
         this.countries = data;
