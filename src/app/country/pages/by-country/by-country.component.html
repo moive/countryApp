@@ -15,7 +15,9 @@
   </div>
 </div>
 <hr />
-<div class="alert alert-danger">Term was not found.</div>
+<div *ngIf="thereIsError" class="alert alert-danger">
+  {{ search | titlecase }} was not found.
+</div>
 
 <div class="row">
   <div class="col">
