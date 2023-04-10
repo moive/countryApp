@@ -29,4 +29,9 @@ export class ByCountryComponent {
     });
     // this.search = '';
   }
+
+  suggestions(search: string) {
+    this.thereIsError = false;
+    // TODO: Create a new suggestion
+  }
 }
