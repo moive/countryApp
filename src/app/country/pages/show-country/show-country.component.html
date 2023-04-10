@@ -1,1 +1,53 @@
-<p>show-country works!</p>
+<div *ngIf="!country; else divCountry" class="alert alert-info">
+  Please wait...
+</div>
+
+<ng-template #divCountry>
+  <div class="row">
+    <div class="col-12">
+      <h2>
+        Country: <small>{{ country.name.common }}</small>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <h3>Flag</h3>
+      <img
+        class="img-thumbnail"
+        [src]="country.flags.png"
+        [alt]="country.flags.alt"
+      />
+    </div>
+    <div class="col">
+      <h3>Information</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Population</strong> {{ country.population | number }}
+        </li>
+        <li class="list-group-item">
+          <strong>Numeric code</strong> {{ country.ccn3 }}
+        </li>
+        <li class="list-group-item">
+          <strong>Alpha code</strong> {{ country.cca3 }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <h3>Translations</h3>
+      <div class="row">
+        <div class="col">
+          <span
+            class="badge bg-primary me-2"
+            *ngFor="let t of country.translations | keyvalue"
+            >{{ t.value.official }}</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- <div class="mt-5">
+      <pre>{{ country.translations | json }}</pre>
+    </div> -->
+  </div>
+</ng-template>
