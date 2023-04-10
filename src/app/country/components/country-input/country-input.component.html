@@ -3,7 +3,7 @@
     type="text"
     name="search"
     class="form-control"
-    placeholder="Enter country"
+    [placeholder]="placeholder"
     (input)="onPressKeyDown()"
     [(ngModel)]="search"
   />
