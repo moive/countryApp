@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Country } from '../../interfaces/country.interface';
 import { CountryService } from '../../services/country.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-by-region',
@@ -29,6 +30,7 @@ export class ByRegionComponent {
 
     this.countryService
       .searchRegion(region)
+      .pipe(tap(console.log))
       .subscribe((res) => (this.countries = res));
   }
 }
