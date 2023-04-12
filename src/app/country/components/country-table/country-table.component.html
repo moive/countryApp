@@ -1,32 +1,37 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Flag</th>
-      <th>Name</th>
-      <th>Population</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let country of countries; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>
-        <img
-          class="small-flag"
-          [src]="country.flags.png"
-          [alt]="country.flags.alt"
-        />
-      </td>
-      <td>{{ country.capital }}, {{ country.name.common }}</td>
-      <td>{{ country.population | number }}</td>
-      <td>
-        <a
-          [routerLink]="['/country', country.cca2]"
-          routerLinkActive="router-link-active"
-          >View</a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="!countries; else divContries" class="alert alert-info mt-3">
+  Please wait...
+</div>
+<ng-template #divContries>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Flag</th>
+        <th>Name</th>
+        <th>Population</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let country of countries; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <img
+            class="small-flag"
+            [src]="country.flags.png"
+            [alt]="country.flags.alt"
+          />
+        </td>
+        <td>{{ country.capital }}, {{ country.name.common }}</td>
+        <td>{{ country.population | number }}</td>
+        <td>
+          <a
+            [routerLink]="['/country', country.cca2]"
+            routerLinkActive="router-link-active"
+            >View</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
