@@ -9,8 +9,8 @@ import { ByCapitalComponent } from './pages/by-capital/by-capital.component';
 import { ByCountryComponent } from './pages/by-country/by-country.component';
 import { ByRegionComponent } from './pages/by-region/by-region.component';
 import { CountryTableComponent } from './components/country-table/country-table.component';
-import { CountryInputComponent } from './components/country-input/country-input.component';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
+import { SharedModule } from '../shared/shared.module';
 
 const components = [
   ByCapitalComponent,
@@ -20,8 +20,14 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [components, CountryTableComponent, CountryInputComponent],
-  imports: [CommonModule, CountriesRoutingModule, FormsModule, RouterModule],
+  declarations: [components, CountryTableComponent],
+  imports: [
+    CommonModule,
+    CountriesRoutingModule,
+    FormsModule,
+    RouterModule,
+    SharedModule,
+  ],
   exports: [components],
 })
 export class CountriesModule {}

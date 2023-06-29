@@ -2,11 +2,11 @@ import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
 import { Subject, debounceTime } from 'rxjs';
 
 @Component({
-  selector: 'app-country-input',
-  templateUrl: './country-input.component.html',
-  styleUrls: ['./country-input.component.scss'],
+  selector: 'shared-search-box',
+  templateUrl: './search-box.component.html',
+  styleUrls: ['./search-box.component.scss'],
 })
-export class CountryInputComponent implements OnInit {
+export class SearchBoxComponent implements OnInit {
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onDebunce: EventEmitter<string> = new EventEmitter();
 
