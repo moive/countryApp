@@ -7,7 +7,7 @@ import { Subject, debounceTime } from 'rxjs';
   styleUrls: ['./search-box.component.scss'],
 })
 export class SearchBoxComponent implements OnInit {
-  @Output() onEnter: EventEmitter<string> = new EventEmitter();
+  @Output() onValue = new EventEmitter<string>();
   @Output() onDebunce: EventEmitter<string> = new EventEmitter();
 
   @Input() placeholder: string = 'Enter';
@@ -22,9 +22,9 @@ export class SearchBoxComponent implements OnInit {
     });
   }
 
-  onSubmit = () => {
-    this.onEnter.emit(this.search);
-  };
+  emitValue(value: string): void {
+    this.onValue.emit(value);
+  }
 
   onPressKeyDown() {
     this.debouncer.next(this.search);

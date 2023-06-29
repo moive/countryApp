@@ -1,10 +1,8 @@
-<form autocomplete="off" (submit)="onSubmit()">
-  <input
-    type="text"
-    name="search"
-    class="form-control"
-    [placeholder]="placeholder"
-    (input)="onPressKeyDown()"
-    [(ngModel)]="search"
-  />
-</form>
+<input
+  type="text"
+  name="search"
+  class="form-control"
+  [placeholder]="placeholder"
+  (keyup.enter)="emitValue(txtInput.value)"
+  #txtInput
+/>

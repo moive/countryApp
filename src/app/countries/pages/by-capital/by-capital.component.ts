@@ -14,7 +14,7 @@ export class ByCapitalComponent {
 
   constructor(private countryService: CountryService) {}
 
-  onSubmit(search: string): void {
+  searchByCapital(search: string): void {
     this.thereIsError = false;
     this.countryService.searchCapital(search).subscribe({
       next: (data) => {
