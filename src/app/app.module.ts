@@ -4,8 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { CountryModule } from './country/country.module';
 import { AppRouteingModule } from './app-routing.module';
+import { CountriesModule } from './countries/countries.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +14,7 @@ import { AppRouteingModule } from './app-routing.module';
     HttpClientModule,
     AppRouteingModule,
     SharedModule,
-    CountryModule,
+    // CountriesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

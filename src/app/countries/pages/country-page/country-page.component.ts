@@ -5,11 +5,11 @@ import { switchMap, tap } from 'rxjs';
 import { Country } from '../../interfaces/country.interface';
 
 @Component({
-  selector: 'app-show-country',
-  templateUrl: './show-country.component.html',
+  selector: 'app-country-page',
+  templateUrl: './country-page.component.html',
   styles: [],
 })
-export class ShowCountryComponent implements OnInit {
+export class CountryPageComponent implements OnInit {
   country!: Country;
 
   constructor(
