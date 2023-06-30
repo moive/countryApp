@@ -11,22 +11,18 @@ export class ByCapitalComponent {
   search: string = '';
   thereIsError: boolean = false;
   countries: Country[] = [];
+  isLoading: boolean = false;
 
   constructor(private countryService: CountryService) {}
 
   searchByCapital(search: string): void {
+    this.isLoading = true;
     this.thereIsError = false;
-    this.countryService.searchCapital(search).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.countries = data;
-      },
-      error: (err) => {
-        console.log(err);
-        this.thereIsError = true;
-        this.countries = [];
-      },
+    this.countryService.searchCapital(search).subscribe((data) => {
+      this.countries = data;
+      this.isLoading = false;
+      if (data.length == 0) this.thereIsError = true;
     });
-    // this.search = '';
+    this.search = search;
   }
 }

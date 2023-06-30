@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { FormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     SearchBoxComponent,
     SidebarComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
-  exports: [SidebarComponent, SearchBoxComponent],
+  exports: [SidebarComponent, SearchBoxComponent, LoadingSpinnerComponent],
 })
 export class SharedModule {}
