@@ -26,7 +26,7 @@ export class SearchBoxComponent implements OnInit {
     this.onValue.emit(value);
   }
 
-  onPressKeyDown() {
-    this.debouncer.next(this.search);
+  onPressKeyDown(value: string) {
+    this.debouncer.next(value);
   }
 }

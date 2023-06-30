@@ -23,6 +23,9 @@ export class CountryPageComponent implements OnInit {
         switchMap(({ id }) => this.countryService.getCountryByAlpha(id)),
         tap(console.log)
       )
-      .subscribe((country) => (this.country = country[0]));
+      .subscribe((country) => {
+        console.log({ country });
+        this.country = country[0];
+      });
   }
 }

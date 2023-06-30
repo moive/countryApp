@@ -25,7 +25,7 @@ export class CountryService {
     return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
-  getCountryByAlpha(id: string): Observable<Country> {
+  getCountryByAlpha(id: string): Observable<Country | null> {
     const url = `${this.apiUrl}/alpha/${id}`;
     return this.http.get<Country>(url);
   }
