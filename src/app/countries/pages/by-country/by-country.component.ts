@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CountryService } from '../../services/country.service';
 import { Country } from '../../interfaces/country.interface';
 
@@ -13,28 +13,29 @@ import { Country } from '../../interfaces/country.interface';
     `,
   ],
 })
-export class ByCountryComponent {
+export class ByCountryComponent implements OnInit {
   search: string = '';
   thereIsError: boolean = false;
   countries: Country[] = [];
   suggestedCountries: Country[] = [];
   showSuggestions: boolean = false;
+  isLoading: boolean = false;
+  initialValue: string = '';
 
   constructor(private countryService: CountryService) {}
+
+  ngOnInit(): void {
+    this.countries = this.countryService.cacheStore.byCountries.countries;
+    this.initialValue = this.countryService.cacheStore.byCountries.term;
+  }
 
   onSubmit(search: string): void {
     this.showSuggestions = false;
     this.thereIsError = false;
-    this.countryService.searchCountry(search).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.countries = data;
-      },
-      error: (err) => {
-        console.log(err);
-        this.thereIsError = true;
-        this.countries = [];
-      },
+    this.countryService.searchCountry(search).subscribe((data) => {
+      this.countries = data;
+      this.isLoading = false;
+      if (data.length == 0) this.thereIsError = true;
     });
     // this.search = '';
   }

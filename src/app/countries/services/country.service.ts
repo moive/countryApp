@@ -1,7 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, delay, map, of } from 'rxjs';
+import { Observable, catchError, delay, map, of, tap } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
+import { CacheStore } from '../interfaces/cache-store.interface';
+import { Region } from '../interfaces/region.types';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,12 @@ export class CountryService {
   get httpParams() {
     return new HttpParams().set('fields', 'name,capital,flags,population,cca2');
   }
+
+  public cacheStore: CacheStore = {
+    byCapital: { term: '', countries: [] },
+    byCountries: { term: '', countries: [] },
+    byRegion: { term: '', countries: [] },
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -30,19 +38,33 @@ export class CountryService {
     );
   }
 
-  searchCountry(contry: string): Observable<Country[]> {
-    const url = `${this.apiUrl}/name/${contry}`;
-    return this.getCountriesRequest(url);
+  searchCountry(country: string): Observable<Country[]> {
+    const url = `${this.apiUrl}/name/${country}`;
+    return this.getCountriesRequest(url).pipe(
+      tap(
+        (countries) =>
+          (this.cacheStore.byCountries = { term: country, countries })
+      )
+    );
     // return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
   searchCapital(capital: string): Observable<Country[]> {
     const url = `${this.apiUrl}/capital/${capital}`;
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url).pipe(
+      tap(
+        (countries) =>
+          (this.cacheStore.byCapital = { term: capital, countries })
+      )
+    );
   }
 
-  searchRegion(region: string): Observable<Country[]> {
+  searchRegion(region: Region): Observable<Country[]> {
     const url = `${this.apiUrl}/region/${region}`;
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url).pipe(
+      tap(
+        (countries) => (this.cacheStore.byRegion = { term: region, countries })
+      )
+    );
   }
 }
