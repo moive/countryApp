@@ -4,15 +4,18 @@ import { Country } from '../../interfaces/country.interface';
 import { CountryService } from '../../services/country.service';
 import { tap } from 'rxjs';
 
+type Region = 'americas' | 'asia' | 'europe' | 'africa' | 'oceania';
+
 @Component({
   selector: 'app-by-region',
   templateUrl: './by-region.component.html',
   styles: [],
 })
 export class ByRegionComponent {
-  regions: string[] = ['americas', 'asia', 'europe', 'africa', 'oceania'];
-  activeRegion: string = '';
+  regions: Region[] = ['americas', 'asia', 'europe', 'africa', 'oceania'];
+  activeRegion?: Region;
   countries: Country[] = [];
+  isLoading: boolean = false;
 
   constructor(private countryService: CountryService) {}
 
@@ -22,7 +25,8 @@ export class ByRegionComponent {
       : 'btn btn-outline-primary';
   }
 
-  activateRegion(region: string) {
+  activateRegion(region: Region) {
+    this.isLoading = true;
     if (region == this.activeRegion) return;
 
     this.activeRegion = region;
@@ -31,6 +35,9 @@ export class ByRegionComponent {
     this.countryService
       .searchRegion(region)
       .pipe(tap(console.log))
-      .subscribe((res) => (this.countries = res));
+      .subscribe((res) => {
+        this.countries = res;
+        this.isLoading = false;
+      });
   }
 }
